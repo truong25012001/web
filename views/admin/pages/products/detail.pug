@@ -1,0 +1,42 @@
+extends ../../layouts/default.pug
+
+block main 
+	if(product.title)
+		h1 #{product.title}
+	
+	if(product.description)
+		div(class="mb-4" style="font-weight: 400; font-size: 20px") Mô tả: <span> <b>#{product.description}</b> </span> 
+
+	if(product.price)
+		div(class="mb-4" ) Giá:  <span><b> #{product.price}$</b></span> 
+	
+	if(product.discountPercentage)
+		div(class="mb-4" style="font-weight: 400; font-size: 20px") Giảm giá: <span><b> #{product.discountPercentage}%</b></span> 
+	
+	if(product.stock)
+		div(class="mb-4" style="font-weight: 400; font-size: 20px") Còn lại: <span><b> #{product.stock} sản phẩm</b></span>
+
+	if(product.thumbnail)
+		div(
+			class="mb-4"
+		)
+			img(
+				src=product.thumbnail 
+				style="width: 100px"
+			)
+	
+	if(product.status)
+		div(class="mb-4")
+			span Trạng thái: 
+				if(product.status === "active")
+					span(class="badge badge-success") Hoạt động
+				else 
+					span(class="badge badge-danger") Dừng hoạt động
+	
+	if(product.position)
+		div(class="mb-4") Vị trí: <span><b> #{product.position}</b></span>
+
+	a(	style="font-weight: 400; font-size: 20px"
+		class="btn btn-warning btn-sm"
+		href=`${prefixAdmin}/products/edit/${product.id}`
+	) Chỉnh sửa

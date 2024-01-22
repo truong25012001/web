@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug
+
+block main
+  .product-detail
+    .container.my-5
+      .row
+        .col-6
+          .inner-thumb
+            img(src=product.thumbnail, alt=product.title)
+        .col-6
+          h1(class="inner-title") #{product.title}
+
+          if (product.category)
+            div(class="inner-category")
+              span Danh mục: 
+              a(href=`/products/${product.category.slug}`) #{product.category.title}
+
+          if (product.priceNew)
+            div(class="inner-price-new") #{product.priceNew}$
+
+          if (product.price)
+            div(class="inner-price-old") #{product.price}$
+
+          if (product.discountPercentage)
+            div(class="inner-percent") Giảm tới <span>#{product.discountPercentage}$</span>
+
+          if (product.stock)
+            div(class="inner-stock") Còn lại <span>#{product.stock}</span> sản phẩm
+
+    .container.my-5
+      .row
+        .col-12
+
+          .inner-desc #{product.description}
